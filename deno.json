@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "deno.ns",
+            "dom",
+            "dom.iterable", 
+            "dom.asynciterable"
+        ],
+        "jsxFactory": "createXElement",
+        "jsxFragmentFactory": "XElement"
+    },
+    "lint": {
+        "rules": {
+            "exclude": [
+                "no-explicit-any"
+            ]
+        }
+    },
+    "importMap": "./import_map.json",
+    "tasks": {
+        "example": "deno run -A examples/server.ts"
+    }
+}
