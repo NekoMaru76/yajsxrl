@@ -1,5 +1,3 @@
-export as namespace yajsjsxrl;
-
 export {
     JSX
 } from "./jsx.d.ts";

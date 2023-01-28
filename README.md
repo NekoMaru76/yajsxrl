@@ -1,4 +1,4 @@
-# YAJSJSXRL
+# YAJSXRL
 
 Yeet Another JSX Rendering Library.
 
