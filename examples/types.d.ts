@@ -1,3 +1,3 @@
 interface List {
-    [key: string]: List | string
+    [key: string]: List | string;
 }

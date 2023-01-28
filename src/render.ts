@@ -1,19 +1,47 @@
-import type { Children, Defaults, ElementType } from "./render.d.ts";
-import { isFunction } from "./util.ts";
+import type { SetState, JSX } from "./render.d.ts";
 
-export class XElement extends HTMLElement {
-    constructor(_props: Defaults, children: Children) {
+export class XElement<P = any> extends HTMLElement {
+    constructor(
+        public props: P,
+        public vchildren: any,
+        public setState: SetState,
+    ) {
         super();
-        for (const child of children) {
-            this.appendChild(typeof child === "string" ? new Text(child) : child);
-        }
+        appendChildren(this, vchildren);
+    }
+    render() {
+        for (const child of this.children) if (child instanceof XElement) child.render();
     }
 }
 
-export function createXElement<P extends Defaults>(ElType: ElementType<P>, props: P, children: XElement[]) {
-    return isFunction(ElType) ? ElType(props, children) : new ElType(props, children);
+export function appendChildren(el: HTMLElement, children: any) {
+    if (!Array.isArray(children)) el.appendChild(new Text(children + ""));
+    else for (const child of children) {
+        el.appendChild(
+            child instanceof HTMLElement ? child : new Text(child + ""),
+        );
+    }
 }
 
-export {
-    createXElement as h
+export function createXElement<P = any>(
+    ElType: JSX.ElementType<P>,
+    props: P,
+    ...children: any
+) {
+    const setState: SetState = (cb) => {
+        cb?.();
+        
+        el.render();
+    };
+    const el = new ElType(props, children, setState);
+
+    el.render();
+
+    return el;
 }
+
+export function register(name: string, ElType: JSX.ElementType<any>) {
+    customElements.define(name, ElType);
+}
+
+export { createXElement as h };

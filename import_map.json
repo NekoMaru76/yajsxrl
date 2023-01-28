@@ -1,6 +1,6 @@
 {
     "imports": {
         "preact-jsx": "https://esm.sh/preact@10.11.3/src/jsx.d.ts",
-        "reit": "./src/render.ts"
+        "preact/": "https://esm.sh/preact@10.11.3/"
     }
 }

@@ -3,7 +3,7 @@
         "lib": [
             "deno.ns",
             "dom",
-            "dom.iterable", 
+            "dom.iterable",
             "dom.asynciterable"
         ],
         "jsxFactory": "createXElement",

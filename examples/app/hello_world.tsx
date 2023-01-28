@@ -1,5 +1,5 @@
 // @jsx createXElement
-import { XElement, createXElement } from "reit";
+import { XElement, createXElement } from "../../mod.ts";
 
 customElements.define("x-element", XElement);
 

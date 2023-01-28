@@ -1,12 +1,14 @@
-export function isFunction(x: CallableFunction | {
-    new(...args: any[]): any
-}): x is {
-    (...args: any[]): any
-} {
+export function isFunction(
+    x: CallableFunction | {
+        new (...args: any[]): any;
+    },
+): x is ({
+    (...args: any[]): any;
+}) {
     return x.prototype
-            ? Object.getOwnPropertyDescriptor(x, 'prototype')?.writable
-                ? true
-                : false
+        ? Object.getOwnPropertyDescriptor(x, "prototype")?.writable
+            ? true
+            : false
         : true;
 }
 

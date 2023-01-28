@@ -1,1 +1,1 @@
-export * from "./src/render.d.ts"
+export * from "./src/render.d.ts";
